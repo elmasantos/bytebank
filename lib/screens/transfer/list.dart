@@ -1,6 +1,10 @@
 import 'package:bytebank/models/transfer.dart';
 import 'package:bytebank/screens/transfer/form.dart';
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
+
+import '../../main.dart';
+
 
 class TransfersList extends StatefulWidget {
   final List<Transfer> _transfers = List();
@@ -14,6 +18,8 @@ class TransfersList extends StatefulWidget {
 class TransfersListState extends State<TransfersList> {
   @override
   Widget build(BuildContext context) {
+    const _appBarTitle = 'Transfers';
+
     return Scaffold(
       body: ListView.builder(
         itemCount: widget._transfers.length,
@@ -23,7 +29,19 @@ class TransfersListState extends State<TransfersList> {
         },
       ),
       appBar: AppBar(
-        title: Text('Transfers'),
+        title: Text(_appBarTitle),
+        actions: <Widget>[
+          ScopedModelDescendant<DarkModeModel>(
+            builder: (context, snapshot, model) {
+              return IconButton(
+                icon: Icon(Icons.lightbulb_outline),
+                onPressed: () {
+                   model.toggle();
+                },
+              );
+            }
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
