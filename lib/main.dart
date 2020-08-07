@@ -32,9 +32,20 @@ class Dashboard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset('images/bytebank-purple-logo.png'),
+          FutureBuilder<double>(
+            initialData: 0.2,
+            future: Future.delayed(Duration(microseconds: 100)).then((value) => 1.0),
+            builder: (context, snapshot) {
+              return AnimatedOpacity(
+                opacity: snapshot.data,
+                curve: Curves.easeInCubic,
+                duration: Duration(seconds: 2),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset('images/bytebank-purple-logo.png'),
+                ),
+              );
+            }
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
