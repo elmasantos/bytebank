@@ -1,3 +1,4 @@
+import 'package:bytebank/screens/transactions/list.dart';
 import 'package:flutter/material.dart';
 
 import 'contacts/list.dart';
@@ -28,23 +29,27 @@ class Dashboard extends StatelessWidget {
                   ),
                 );
               }),
-          Row(
-            children: <Widget>[
-              _FeatureItem(
-                'Transfer',
-                Icons.monetization_on,
-                onClick: () {
-                  _showContactsList(context);
-                },
-              ),
-              _FeatureItem(
-                'Transaction Feed',
-                Icons.description,
-                onClick: () {
-                  _showContactsList(context);
-                },
-              ),
-            ],
+          Container(
+            height: 120,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                _FeatureItem(
+                  'Transfer',
+                  Icons.monetization_on,
+                  onClick: () {
+                    _showContactsList(context);
+                  },
+                ),
+                _FeatureItem(
+                  'Transaction Feed',
+                  Icons.description,
+                  onClick: () {
+                    _showTransactionsList(context);
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -55,6 +60,14 @@ class Dashboard extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ContactList(),
+      ),
+    );
+  }
+
+  void _showTransactionsList(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => TransactionsList(),
       ),
     );
   }
@@ -79,7 +92,6 @@ class _FeatureItem extends StatelessWidget {
           },
           child: Container(
             padding: EdgeInsets.all(8.0),
-            height: 100,
             width: 150,
             color: Theme.of(context).primaryColor,
             child: Column(

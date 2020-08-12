@@ -6,9 +6,11 @@ import 'package:bytebank/screens/dashboard.dart';
 import 'package:bytebank/screens/transfer/list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:bytebank/diplomat/webclient.dart';
 
 void main() {
   runApp(BytebankApp());
+  findAll();
 }
 
 class BytebankApp extends StatelessWidget {
