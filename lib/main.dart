@@ -1,16 +1,9 @@
-import 'package:bytebank/database/app_database.dart';
-import 'package:bytebank/models/contact.dart';
-import 'package:bytebank/screens/contacts/form.dart';
-import 'package:bytebank/screens/contacts/list.dart';
 import 'package:bytebank/screens/dashboard.dart';
-import 'package:bytebank/screens/transfer/list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:bytebank/diplomat/webclient.dart';
 
 void main() {
   runApp(BytebankApp());
-  findAll();
 }
 
 class BytebankApp extends StatelessWidget {
