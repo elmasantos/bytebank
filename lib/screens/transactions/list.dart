@@ -1,5 +1,6 @@
 import 'package:bytebank/components/centered_message.dart';
 import 'package:bytebank/components/progress.dart';
+import 'package:bytebank/diplomat/transaction_webclient.dart';
 import 'package:bytebank/diplomat/webclient.dart';
 import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/models/transaction.dart';
@@ -11,6 +12,8 @@ class TransactionsList extends StatefulWidget {
 }
 
 class _TransactionsListState extends State<TransactionsList> {
+  final TransactionWebClient _transactionWebClient = TransactionWebClient();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +22,7 @@ class _TransactionsListState extends State<TransactionsList> {
       ),
       body: FutureBuilder<List<Transaction>>(
           future:
-              Future.delayed(Duration(seconds: 1)).then((value) => findAll()),
+              Future.delayed(Duration(seconds: 1)).then((value) => _transactionWebClient.findAll()),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
